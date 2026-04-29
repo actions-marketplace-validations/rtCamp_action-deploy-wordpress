@@ -174,16 +174,13 @@ task( 'permissions:set', function () {
 } );
 
 desc( 'Symlink llms.txt from shared if it exists' );
-task( 'link_llms_txt', function () {
-	$shared_file  = get( 'deploy_path' ) . '/shared/llms.txt';
-	$release_file = get( 'release_path' ) . '/llms.txt';
-
-	if ( test( "[ -f $shared_file ]" ) ) {
-		run( "ln -sfn $shared_file $release_file" );
+task( 'llms:link', function () {
+	if ( test( '[ -f "{{shared_path}}/llms.txt" ]' ) ) {
+		run( 'ln -sfn "{{shared_path}}/llms.txt" "{{release_path}}/llms.txt"' );
 	}
 } );
 
-after( 'deploy:shared', 'link_llms_txt' );
+after( 'deploy:shared', 'llms:link' );
 
 $wp_tasks = [
 	'deploy:prepare',
