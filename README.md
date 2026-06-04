@@ -31,7 +31,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Deploy
         uses: rtCamp/action-deploy-wordpress@v3
         env:
@@ -182,7 +182,7 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Deploy
         uses: rtCamp/action-deploy-wordpress@v3
         env:
