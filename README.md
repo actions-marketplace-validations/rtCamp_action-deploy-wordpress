@@ -228,6 +228,14 @@ systemctl restart ssh
    location `.github/deploy/addon.sh` in your git repository. Checkout the [example addon.sh](./example/addon.sh) to see
    how to customize.
 
+## Persisting `llms.txt` (Yoast SEO)
+
+Some plugins, notably [Yoast SEO](https://yoast.com/), serve an `llms.txt` file from the site root. Because every deployment creates a fresh release directory, this file would otherwise be missing from each new release and the `/llms.txt` endpoint would return a `404` after every deploy (the file lives in `current`, which now points at the freshly deployed release).
+
+To keep it available across deployments, this action symlinks `llms.txt` from Deployer's shared directory into each release: if a file exists at `{deploy_path}/shared/llms.txt` on the server, it is automatically linked into the new release after `deploy:shared` runs.
+
+Place (or move) your `llms.txt` into the `shared` directory once, and it will survive future deployments. Sites without this file are unaffected.
+
 ## License
 
 [MIT](LICENSE) © 2022 rtCamp
