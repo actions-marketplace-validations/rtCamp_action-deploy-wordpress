@@ -51,6 +51,7 @@ set( 'rsync', [
 		'package-lock.json',
 		'package.json',
 		'phpcs.xml',
+		'llms.txt',
 	],
 	'exclude-file'  => true,
 	'include'       => [],
@@ -171,6 +172,15 @@ task( 'permissions:set', function () {
 	writeln( '<info>' . $output . '</info>' );
 
 } );
+
+desc( 'Symlink llms.txt from shared if it exists' );
+task( 'llms:link', function () {
+	if ( test( '[ -f "{{shared_path}}/llms.txt" ]' ) ) {
+		run( 'ln -sfn "{{shared_path}}/llms.txt" "{{release_path}}/llms.txt"' );
+	}
+} );
+
+after( 'deploy:shared', 'llms:link' );
 
 $wp_tasks = [
 	'deploy:prepare',
