@@ -175,8 +175,8 @@ task( 'permissions:set', function () {
 
 desc( 'Symlink llms.txt from shared if it exists' );
 task( 'llms:link', function () {
-	if ( test( '[ -f "{{shared_path}}/llms.txt" ]' ) ) {
-		run( 'ln -sfn "{{shared_path}}/llms.txt" "{{release_path}}/llms.txt"' );
+	if ( test( '[ -f "{{deploy_path}}/shared/llms.txt" ]' ) ) {
+		run( '{{bin/symlink}} "{{deploy_path}}/shared/llms.txt" "{{release_path}}/llms.txt"' );
 	}
 } );
 
