@@ -2,5 +2,10 @@
     "require": {
         "deployer/deployer": "^6.8",
         "deployer/recipes": "^6.2"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.33"
+        }
     }
 }
