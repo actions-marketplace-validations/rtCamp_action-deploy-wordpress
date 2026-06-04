@@ -238,7 +238,7 @@ Place (or move) your `llms.txt` into the `shared` directory once, and it will su
 
 ## License
 
-[MIT](LICENSE) © 2022-2026 rtCamp
+[MIT](LICENSE) © 2026 rtCamp
 
 ## Does this interest you?
 
